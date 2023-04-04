@@ -123,4 +123,4 @@ def csv2postgres(pathname):
     cursor.execute(sql)  
 
 
-csv2postgres("path")
+csv2postgres("get_money")

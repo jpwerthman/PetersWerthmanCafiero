@@ -1,5 +1,6 @@
 import pandas as pd
 import requests
+import psycopg2
 API_KEY = 'DCKF14084FJK2MEI'
 # Alt Keys: DTG5GZLOTFOW62UP
 
@@ -104,3 +105,22 @@ print(melt(merged_prices))
 merged_prices.to_csv('merged_prices.csv', index=False)
 meltedCommodityPrices.to_csv('melted_commodity_prices.csv', index=False)
 
+def csv2postgres(pathname):
+
+    conn = psycopg2.connect(database="COMMODITY_DATABASE",
+                        user='postgres', password='pass', 
+                        host='127.0.0.1', port='5432'
+)
+  
+    conn.autocommit = True
+    cursor = conn.cursor()
+  
+  
+    sql = '''CREATE TABLE DETAILS(month date NOT NULL,\
+    Commodity char(20),\
+    price double precision, currency char(5), symbol char(1));'''
+  
+    cursor.execute(sql)  
+
+
+csv2postgres("path")

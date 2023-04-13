@@ -109,7 +109,7 @@ def csv2postgres(pathname):
 
     conn = psycopg2.connect(database="COMMODITY_DATABASE",
                         user='postgres', password='pass', 
-                        host='127.0.0.1', port='5432'
+                        host='localhost'
 )
   
     conn.autocommit = True
